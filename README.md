@@ -220,6 +220,23 @@ private final Handler serviceHandler = new Handler(Looper.getMainLooper()) {
 };
 ```
 
+### Best Practice: Guiding Users to Glyph Toys Manager
+
+We highly recommend using the intent action provided below when your Glyph Toy application is ready for distribution. It is valid for system version on 20250829 or later.
+
+This intent directs users to the system's Manage Glyph Toys screen, allowing them to add your toy to their active toy queue. Without this guidance, users can become confused about how to activate the toy after installing your application.
+```java
+Intent intent = new Intent();
+intent.setComponent(new ComponentName("com.nothing.thirdparty", "com.nothing.thirdparty.matrix.toys.manager.ToysManagerActivity"));
+startActivity(intent);
+```
+
+Here are two common implementation scenarios:
+
+1. For simple toys: Your application interface can feature a basic introduction to the toy with a button, such as "Activate toy," which triggers the intent.
+
+2. For toys requiring setup: It is best to present the button that triggers this intent at the end of the configuration process. This guides the user to activate the toy immediately after they have finished setting it up. For instance, a toy designed to show a YouTube channel's subscriber count would first require the user to select the channel as part of the setup before it can work properly.
+
 ## API Reference
 
 ### GlyphMatrixManager
