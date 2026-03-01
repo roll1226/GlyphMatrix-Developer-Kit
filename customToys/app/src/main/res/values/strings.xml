@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Clock Toy</string>
+    <string name="toy_name">Clock</string>
+    <string name="toy_summary">現在の時刻・日付・曜日を表示します。長押しで AM/PM ⇄ 24時間表示を切り替えられます。</string>
+</resources>
