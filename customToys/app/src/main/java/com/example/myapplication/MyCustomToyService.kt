@@ -91,7 +91,7 @@ class MyCustomToyService : Service() {
         } else {
             // AM/PMなし: "h:MM"
             val hour12 = cal.get(Calendar.HOUR).let { if (it == 0) 12 else it }
-            String.format(Locale.US, "%d%s%02d", hour12, colon, cal.get(Calendar.MINUTE))
+            String.format(Locale.US, "%02d%s%02d", hour12, colon, cal.get(Calendar.MINUTE))
         }
 
         // --- 日付テキスト: "MM:DD"（ゼロ埋めあり）---
