@@ -114,7 +114,7 @@ class MyCustomToyService : Service() {
      */
     private fun centeredXTall(text: String): Int {
         if (text.isEmpty()) return 0
-        val width = text.sumOf { ch ->
+        val width: Int = text.sumOf { ch ->
             when (ch.lowercaseChar()) {
                 ':', ' ', '.' -> 1  // letter_colon / letter_space / letter_dot: 1px
                 'm', 'w'      -> 5  // letter_m / letter_w: 5px
