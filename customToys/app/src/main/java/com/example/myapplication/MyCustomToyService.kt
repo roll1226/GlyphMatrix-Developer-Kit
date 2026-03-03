@@ -108,8 +108,6 @@ class MyCustomToyService : Service() {
 
     /**
      * 時刻表示用の中央寄せX座標。
-     * tall スタイルでは '1' を含む全数字が 4px に統一されるため、
-     * AM/PM⇄24時間切替や '1' の有無による位置ズレが発生しない。
      * 各幅はSDKの tall レター定義に基づく: 数字=4px, ':'/空白/'.'=1px, 'm'/'w'=5px
      */
     private fun centeredXTall(text: String): Int {
@@ -158,25 +156,25 @@ class MyCustomToyService : Service() {
         // 25x25 マトリクス中央寄りに配置（文字幅に応じてX座標を調整）
         val dateObj = GlyphMatrixObject.Builder()
             .setText(dateText)
-            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setPosition(centeredX(dateText), 4)   // 中段: 日付
+            .setTextStyle("tall")
+            .setPosition(centeredX(dateText), 4)
             .build()
 
         val timeObj = GlyphMatrixObject.Builder()
             .setText(timeText)
-            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setPosition(centeredXTall(timeText), 12)    // 上段: 時刻
+            .setTextStyle("tall")
+            .setPosition(centeredXTall(timeText), 12)
             .build()
 
         val dayObj = GlyphMatrixObject.Builder()
             .setText(dayText)
-            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setPosition(centeredX(dayText), 19)    // 下段: 曜日
+            .setTextStyle("tall")
+            .setPosition(centeredX(dayText), 19)
             .build()
 
         val frame = GlyphMatrixFrame.Builder()
-            .addTop(timeObj)
-            .addMid(dateObj)
+            .addTop(dateObj)
+            .addMid(timeObj)
             .addLow(dayObj)
             .build(this)
 
