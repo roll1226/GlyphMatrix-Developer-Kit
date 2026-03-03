@@ -160,21 +160,23 @@ class MyCustomToyService : Service() {
             .setText(timeText)
             .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
             .setScale(50)
-            .setPosition(centeredXTall(timeText), 5)    // 上段: 時刻
+            .setPosition(centeredXTall(timeText), 4)    // 上段: 時刻
             .setBrightness(255)
             .build()
 
         val dateObj = GlyphMatrixObject.Builder()
             .setText(dateText)
+            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
             .setScale(50)
-            .setPosition(centeredX(dateText), 11)   // 中段: 日付
+            .setPosition(centeredX(dateText), 12)   // 中段: 日付
             .setBrightness(200)
             .build()
 
         val dayObj = GlyphMatrixObject.Builder()
             .setText(dayText)
+            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
             .setScale(50)
-            .setPosition(centeredX(dayText), 17)    // 下段: 曜日
+            .setPosition(centeredX(dayText), 19)    // 下段: 曜日
             .setBrightness(180)
             .build()
 
