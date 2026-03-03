@@ -40,7 +40,7 @@
             <!-- 必須: プレビュー画像 -->
             <meta-data
                 android:name="com.nothing.glyph.toy.image"
-                android:resource="@drawable/basic_thumbnail" />
+                android:resource="@drawable/clock_toy_preview" />
 
             <!-- オプション: 長押し有効化 -->
             <meta-data
