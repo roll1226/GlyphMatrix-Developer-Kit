@@ -116,10 +116,10 @@ class MyCustomToyService : Service() {
         if (text.isEmpty()) return 0
         val width: Int = text.sumOf { ch ->
             when (ch.lowercaseChar()) {
-                ':', ' ', '.' -> 1  // letter_colon / letter_space / letter_dot: 1px
-                'm', 'w'      -> 5  // letter_m / letter_w: 5px
-                else          -> 4  // tall スタイルでは '1' を含む全数字が 4px
-            }
+                ':', ' ', '.' -> 1
+                'm', 'w'      -> 5
+                else          -> 4
+            }.toInt() // 明示的に Int に変換
         } + (text.length - 1)
         return maxOf(0, (MATRIX_COLUMNS - width) / 2)
     }
