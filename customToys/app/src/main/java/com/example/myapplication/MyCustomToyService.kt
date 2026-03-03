@@ -91,8 +91,8 @@ class MyCustomToyService : Service() {
      * 幅が異なる文字: '1'/'i'/'t' = 3px, ':'/' ' = 1px, 'm'/'w' = 5px, その他 = 4px
      */
     private fun glyphCharWidth(ch: Char): Int = when (ch.lowercaseChar()) {
-        '1', 'i', 't' -> 3
-        ':', ' '       -> 1
+        '1', 'i', 't'  -> 3
+        ':', ' ', '.'  -> 1
         'm', 'w'       -> 5
         else           -> 4
     }
