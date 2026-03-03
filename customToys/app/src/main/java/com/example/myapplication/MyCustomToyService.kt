@@ -106,6 +106,24 @@ class MyCustomToyService : Service() {
     /** マトリクス上でテキストを中央寄せするX座標 */
     private fun centeredX(text: String): Int = maxOf(0, (MATRIX_COLUMNS - glyphTextWidth(text)) / 2)
 
+    /**
+     * 時刻表示用の中央寄せX座標。
+     * tall スタイルでは '1' を含む全数字が 4px に統一されるため、
+     * AM/PM⇄24時間切替や '1' の有無による位置ズレが発生しない。
+     * 各幅はSDKの tall レター定義に基づく: 数字=4px, ':'/空白/'.'=1px, 'm'/'w'=5px
+     */
+    private fun centeredXTall(text: String): Int {
+        if (text.isEmpty()) return 0
+        val width = text.sumOf { ch ->
+            when (ch.lowercaseChar()) {
+                ':', ' ', '.' -> 1  // letter_colon / letter_space / letter_dot: 1px
+                'm', 'w'      -> 5  // letter_m / letter_w: 5px
+                else          -> 4  // tall スタイルでは '1' を含む全数字が 4px
+            }
+        } + (text.length - 1)
+        return maxOf(0, (MATRIX_COLUMNS - width) / 2)
+    }
+
     // -------------------------------------------------------
     // 時計表示
     // -------------------------------------------------------
@@ -119,7 +137,7 @@ class MyCustomToyService : Service() {
             // 24時間: "HH:MM"
             String.format(Locale.US, "%02d%s%02d", cal.get(Calendar.HOUR_OF_DAY), colon, cal.get(Calendar.MINUTE))
         } else {
-            // AM/PMなし: "h:MM"
+            // AM/PM表記: "hh:MM"（ゼロ埋め）
             val hour12 = cal.get(Calendar.HOUR).let { if (it == 0) 12 else it }
             String.format(Locale.US, "%02d%s%02d", hour12, colon, cal.get(Calendar.MINUTE))
         }
@@ -140,8 +158,9 @@ class MyCustomToyService : Service() {
         // 25x25 マトリクス中央寄りに配置（文字幅に応じてX座標を調整）
         val timeObj = GlyphMatrixObject.Builder()
             .setText(timeText)
+            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
             .setScale(50)
-            .setPosition(centeredX(timeText), 5)    // 上段: 時刻
+            .setPosition(centeredXTall(timeText), 5)    // 上段: 時刻
             .setBrightness(255)
             .build()
 
