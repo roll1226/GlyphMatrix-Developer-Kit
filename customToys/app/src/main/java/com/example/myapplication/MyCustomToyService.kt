@@ -159,25 +159,19 @@ class MyCustomToyService : Service() {
         val dateObj = GlyphMatrixObject.Builder()
             .setText(dateText)
             .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setScale(50)
             .setPosition(centeredX(dateText), 4)   // 中段: 日付
-            .setBrightness(200)
             .build()
 
         val timeObj = GlyphMatrixObject.Builder()
             .setText(timeText)
             .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setScale(50)
             .setPosition(centeredXTall(timeText), 12)    // 上段: 時刻
-            .setBrightness(255)
             .build()
 
         val dayObj = GlyphMatrixObject.Builder()
             .setText(dayText)
             .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setScale(50)
             .setPosition(centeredX(dayText), 19)    // 下段: 曜日
-            .setBrightness(180)
             .build()
 
         val frame = GlyphMatrixFrame.Builder()
