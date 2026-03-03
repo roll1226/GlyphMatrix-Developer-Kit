@@ -126,7 +126,7 @@ class MyCustomToyService : Service() {
 
         // --- 日付テキスト: "MM:DD"（ゼロ埋めあり）---
         val dateText = String.format(
-            Locale.US, "%02d:%02d",
+            Locale.US, "%02d.%02d",
             cal.get(Calendar.MONTH) + 1,
             cal.get(Calendar.DAY_OF_MONTH)
         )
