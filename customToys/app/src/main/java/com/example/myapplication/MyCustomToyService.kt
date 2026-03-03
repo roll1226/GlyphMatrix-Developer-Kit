@@ -77,6 +77,36 @@ class MyCustomToyService : Service() {
     }
 
     // -------------------------------------------------------
+    // 文字幅計算ユーティリティ
+    // -------------------------------------------------------
+
+    companion object {
+        /** GlyphMatrixの列数（25x25固定） */
+        private const val MATRIX_COLUMNS = 25
+    }
+
+    /**
+     * SDKのレター定義に基づく1文字あたりのピクセル幅。
+     * SDKは大文字を小文字に変換してリソースを参照するため、lowercaseChar()で統一する。
+     * 幅が異なる文字: '1'/'i'/'t' = 3px, ':'/' ' = 1px, 'm'/'w' = 5px, その他 = 4px
+     */
+    private fun glyphCharWidth(ch: Char): Int = when (ch.lowercaseChar()) {
+        '1', 'i', 't' -> 3
+        ':', ' '       -> 1
+        'm', 'w'       -> 5
+        else           -> 4
+    }
+
+    /** テキスト全体のピクセル幅（文字幅の合計 + 文字間スペース1px）*/
+    private fun glyphTextWidth(text: String): Int {
+        if (text.isEmpty()) return 0
+        return text.sumOf { glyphCharWidth(it) } + (text.length - 1)
+    }
+
+    /** マトリクス上でテキストを中央寄せするX座標 */
+    private fun centeredX(text: String): Int = maxOf(0, (MATRIX_COLUMNS - glyphTextWidth(text)) / 2)
+
+    // -------------------------------------------------------
     // 時計表示
     // -------------------------------------------------------
 
@@ -107,25 +137,25 @@ class MyCustomToyService : Service() {
         ]
 
         // --- 各レイヤーに配置 ---
-        // 25x25 マトリクス右下寄りに配置
+        // 25x25 マトリクス中央寄りに配置（文字幅に応じてX座標を調整）
         val timeObj = GlyphMatrixObject.Builder()
             .setText(timeText)
             .setScale(50)
-            .setPosition(2, 5)    // 上段: 時刻
+            .setPosition(centeredX(timeText), 5)    // 上段: 時刻
             .setBrightness(255)
             .build()
 
         val dateObj = GlyphMatrixObject.Builder()
             .setText(dateText)
             .setScale(50)
-            .setPosition(2, 11)   // 中段: 日付
+            .setPosition(centeredX(dateText), 11)   // 中段: 日付
             .setBrightness(200)
             .build()
 
         val dayObj = GlyphMatrixObject.Builder()
             .setText(dayText)
             .setScale(50)
-            .setPosition(8, 17)   // 下段: 曜日
+            .setPosition(centeredX(dayText), 17)    // 下段: 曜日
             .setBrightness(180)
             .build()
 
