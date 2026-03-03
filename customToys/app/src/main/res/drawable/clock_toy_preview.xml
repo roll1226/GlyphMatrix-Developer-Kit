@@ -716,7 +716,7 @@
       android:fillColor="#1C1C1C"/>
   <path
       android:pathData="M249.47,302.93h13.05v13.05h-13.05z"
-      android:fillColor="#1C1C1C"/>
+      android:fillColor="#c8c8c8"/>
   <path
       android:pathData="M267.29,302.93h13.05v13.05h-13.05z"
       android:fillColor="#1C1C1C"/>
@@ -1321,9 +1321,6 @@
       android:pathData="M213.83,249.47h13.05v13.05h-13.05z"
       android:fillColor="#c8c8c8"/>
   <path
-      android:pathData="M249.47,249.47h13.05v13.05h-13.05z"
-      android:fillColor="#c8c8c8"/>
-  <path
       android:pathData="M285.11,249.47h13.05v13.05h-13.05z"
       android:fillColor="#c8c8c8"/>
   <path
@@ -1373,9 +1370,6 @@
       android:fillColor="#c8c8c8"/>
   <path
       android:pathData="M213.83,285.11h13.05v13.05h-13.05z"
-      android:fillColor="#c8c8c8"/>
-  <path
-      android:pathData="M249.47,285.11h13.05v13.05h-13.05z"
       android:fillColor="#c8c8c8"/>
   <path
       android:pathData="M285.11,285.11h13.05v13.05h-13.05z"
