@@ -156,20 +156,20 @@ class MyCustomToyService : Service() {
 
         // --- 各レイヤーに配置 ---
         // 25x25 マトリクス中央寄りに配置（文字幅に応じてX座標を調整）
-        val dateObj = GlyphMatrixObject.Builder()
-            .setText(dateText)
-            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
-            .setScale(50)
-            .setPosition(centeredX(dateText), 4)   // 中段: 日付
-            .setBrightness(200)
-            .build()
-
         val timeObj = GlyphMatrixObject.Builder()
             .setText(timeText)
             .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
             .setScale(50)
-            .setPosition(centeredXTall(timeText), 12)    // 上段: 時刻
+            .setPosition(centeredXTall(timeText), 4)     // 上段: 時刻
             .setBrightness(255)
+            .build()
+
+        val dateObj = GlyphMatrixObject.Builder()
+            .setText(dateText)
+            .setTextStyle("tall")              // tall スタイルで '1' を含む全数字を 4px に統一
+            .setScale(50)
+            .setPosition(centeredXTall(dateText), 12)    // 中段: 日付
+            .setBrightness(200)
             .build()
 
         val dayObj = GlyphMatrixObject.Builder()
