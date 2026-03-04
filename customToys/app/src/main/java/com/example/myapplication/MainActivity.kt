@@ -73,6 +73,14 @@ fun ToyScreen(modifier: Modifier = Modifier) {
         }) {
             Text(text = "トイをアクティブ化する")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(onClick = {
+            context.startActivity(Intent(context, SimulatorActivity::class.java))
+        }) {
+            Text(text = "シミュレーターを開く")
+        }
     }
 }
 

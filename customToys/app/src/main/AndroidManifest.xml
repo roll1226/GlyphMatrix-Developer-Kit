@@ -25,6 +25,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SimulatorActivity"
+            android:exported="false"
+            android:label="GlyphMatrix Simulator"
+            android:theme="@style/Theme.MyApplication" />
+
         <!-- トイサービスを登録 -->
         <service android:name=".MyCustomToyService"
             android:exported="true">
